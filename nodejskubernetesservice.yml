@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: nodejs-k8s-app-service # Name of the service
+spec:
+  selector:
+    app: nodejs-k8s-app # Label selector to match the pods
+  type: LoadBalancer # Type of service, exposing it on a port on each node  
+  ports:
+    - protocol: TCP # Protocol used by the service
+      port: 5000 # Port exposed by the service
+      targetPort: 3000 # Port on which the app listens in the pod
+      nodePort: 31110 # Port on which the service will be accessible externally
